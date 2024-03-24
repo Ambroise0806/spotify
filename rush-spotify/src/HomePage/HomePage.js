@@ -38,7 +38,7 @@ export function HomePage() {
             <Link to={`genres`}>Genres</Link>
           </li>
           <li>
-            <Link to={`artistes`}>Artistes</Link>
+            <Link to={`artistes` `artiste`}>Artistes</Link>
           </li>
           <li>
             <Link to={`albums`}>Albums</Link>

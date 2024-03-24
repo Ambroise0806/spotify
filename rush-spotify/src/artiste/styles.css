@@ -1,0 +1,23 @@
+.artistes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.artistes-item {
+    padding: 10px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.artistes-item:hover {
+    background-color: #e0e0e0;
+}
+
+body {
+    background-color: aliceblue;
+}
