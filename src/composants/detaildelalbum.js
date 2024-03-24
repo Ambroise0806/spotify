@@ -1,39 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const DetailDeLAlbum = () => {
-  const { id } = useParams();
-  const [album, definirAlbum] = useState(null);
+const AlbumDetails = () => {
+  const { id } = useParams(); 
+  const [album, setAlbum] = useState(null);
 
   useEffect(() => {
-    const chargerDetailsDeLAlbum = async () => {
-      try {
-        const reponse = await fetch(`http://localhost:8000/albums/${id}`);
-        const donnees = await reponse.json();
-        definirAlbum(donnees);
-      } catch (erreur) {
-        console.error("Erreur: ", erreur);
-      }
-    };
-
-    chargerDetailsDeLAlbum();
+    fetch(`http://localhost:8000/albums/${id}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setAlbum(data); 
+      })
+      .catch(error => {
+        console.error("Il y a eu un problème avec la requête Fetch:", error);
+      });
   }, [id]);
 
-  if (!album) return <div>Chargement...</div>;
+  const formatDate = (unixTimestamp) => {
+    const date = new Date(unixTimestamp * 1000);
+    return date.toLocaleDateString("fr-FR");
+  };
+
+  if (!album) {
+    return <div>Chargement...</div>;
+  }
 
   return (
     <div>
-      <h1>{album.nom} - {album.artiste}</h1>
+      <h1>{album.name}</h1>
       <p>{album.description}</p>
-      <img src={album.couverture} alt={`Couverture de l'album ${album.nom}`} />
-      {album.pistes.map(piste => (
-        <div key={piste.id}>
-          <h2>{piste.nom}</h2>
-          <audio controls src={piste.url}></audio>
-        </div>
-      ))}
+      <img src={album.cover} alt={`Couverture de l'album ${album.name}`} style={{ maxWidth: '100%', height: 'auto' }} />
+      <div>Date de sortie: {formatDate(album.release_date)}</div>
+      <div>Popularité: {album.popularity}</div>
     </div>
   );
 };
 
-export default DetailDeLAlbum;
+export default AlbumDetails;
