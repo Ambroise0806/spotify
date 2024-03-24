@@ -1,17 +1,28 @@
-import React from 'react';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import DetailDeLAlbum from './composants/detaildelalbum';
-import listedesalbums from './composants/listedesalbums';
+import './App.css';
+import { ListedAlbums } from './ListedAlbums/ListedAlbums'; 
+import { AlbumDetails } from './AlbumDetails/AlbumDetails'; 
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { HomePage } from './HomePage/HomePage';
 
-function App(){
-    return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/albums" element={<listedesalbums />} />
-                <Route path="albums/:id" element={<detaildelalbum />} />
-            </Routes>
-        </Router>
-    );
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/albums",
+    element: <ListedAlbums />,
+  },
+  {
+    path: "/albums/:id",
+    element: <AlbumDetails />,
+  },
+]);
+
+function App() {
+  return (
+     <RouterProvider router={router} />
+  );
 }
+
 export default App;
