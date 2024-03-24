@@ -8,7 +8,7 @@ export function ListingArtistes() {
 
     useEffect(() => {
         async function fetchArtists() {
-            await fetch('http://localhost:8000/listingartistes').then((res) => {
+            await fetch('http://localhost:8000/artists').then((res) => {
                 res.json().then((data) => setArtists(data))
             })
         }
@@ -19,9 +19,9 @@ export function ListingArtistes() {
     return (<div className="artistes-container">
 
         <h1>Artistes :</h1>
-    {artists.map(artists => (
-        <div onClick={() => navigate("/ListingArtistes/" + artists.id)} key={artists.id} className="artistes-item">
-            {artists.name}
+    {artists.map(artist => (
+        <div onClick={() => navigate("/listingArtistes/" + artist.id)} key={artist.id} className="artistes-item">
+            {artist.name}
         </div>
     ))}
 </div>)
