@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <GenrePage />,
   },
   {
-    path: 'artiste/listingArtistes',
+    path: '/listingArtistes',
     element: <ListingArtistes />,
   },
   {
