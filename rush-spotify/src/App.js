@@ -3,6 +3,8 @@ import { GenresPage } from './GenresPage/GenresPage';
 import { GenrePage } from './GenrePage/GenrePage';
 import { ListingArtistes } from './artiste/listingArtistes';
 import { DetailArtistes } from './artistes/DetailArtistes';
+import { ListedAlbums } from './ListedAlbums/ListedAlbums'; 
+import { AlbumDetails } from './AlbumDetails/AlbumDetails'; 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { HomePage } from './HomePage/HomePage';
 
