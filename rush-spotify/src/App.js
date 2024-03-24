@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { GenresPage } from './GenresPage/GenresPage';
+import { GenrePage } from './GenrePage/GenrePage';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { HomePage } from './HomePage/HomePage';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/genres",
+    element: <GenresPage />,
+  },
+  {
+    path: "/genres/:id",
+    element: <GenrePage />,
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <RouterProvider router={router} />
   );
 }
 
