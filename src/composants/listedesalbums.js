@@ -1,13 +1,19 @@
 import react, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+
 const listedesalbums = () => {
     const [albums, definiralbums] = useState ([]); 
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch('http://localhost:8000/albums')
-        .then(reponse => reponse.json())
-        .then(donnees => definiralbums(donnees))
-        .catch(erreur => console.erreur("Y'a un Problème avec le fetch: ",erreur));
-    }, []);
+        const fetchAlbums = async () => {
+          const response = await fetch(`http://localhost:8000/albums?page=${page}`);
+          const data = await response.json();
+          setAlbums(data);
+        };
+    
+        fetchAlbums();
+      }, [page]);
 
     return (
         <div>
