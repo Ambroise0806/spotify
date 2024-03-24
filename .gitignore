@@ -21,3 +21,4 @@ data/private_key.pem
 data/server-key.pem
 data/undo_001
 data/undo_002
+data/binlog.000004
